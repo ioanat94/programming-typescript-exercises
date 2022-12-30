@@ -1,0 +1,35 @@
+1. For each of these values, what type will TypeScript infer?
+
+  a. let a = 1042 // number
+  b. let b = 'apples and oranges' // string
+  c. const c = 'pineapples' // 'pineapples'
+  d. let d = [true, true, false] // boolean[]
+  e. let e = {type: 'ficus'} // { type: string }
+  f. let f = [1, false] // (number | boolean)[]
+  g. const g = [3] // number[]
+  h. let h = null (try this out in your code editor, then jump ahead to “Type Widening” if the result surprises you!) // any
+
+2. Why does each of these throw the error it does?
+  a.
+    let i: 3 = 3
+    i = 4 // Error TS2322: Type '4' is not assignable to type '3'.
+
+    // The type of i is specifically the number 3. It can't be any other value.
+
+  b.
+    let j = [1, 2, 3]
+    j.push(4)
+    j.push('5') // Error TS2345: Argument of type '"5"' is not assignable to parameter of type 'number'.
+
+    // The type of j is inferred to be an array of numbers. Therefore, you can't add strings to it.
+
+  c.
+    let k: never = 4 // Error TSTS2322: Type '4' is not assignable to type 'never'.
+
+    // Nothing can be assigned to never.
+
+  d.
+    let l: unknown = 4
+    let m = l * 2 // Error TS2571: Object is of type 'unknown'.
+
+    // You can't do operations with unknown. You need to check the actual type of l (e.g. with typeof).
